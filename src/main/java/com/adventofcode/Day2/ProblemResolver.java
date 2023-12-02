@@ -30,12 +30,43 @@ public class ProblemResolver {
   }
 
   public static int resolvePart1(String[] documentLines) {
-    int total=0;
+    int total = 0;
     for (String line : documentLines) {
       Game game = DocumentParser.getGameFromLine(line);
-      if(isPossible(game)){
+      if (isPossible(game)) {
         total += game.id;
       }
+    }
+    return total;
+  }
+
+  public static int resolvePart2(String[] documentLines) {
+    int total = 0;
+    for (String line : documentLines) {
+      Game game = DocumentParser.getGameFromLine(line);
+      int minRedCube = 0;
+      int minGreenCube = 0;
+      int minBlueCube = 0;
+
+      for (Map<String, Integer> handfull : game.handfullsOfCubes) {
+        int handfullRed =
+          (handfull.get("red") != null ? handfull.get("red"): 0);
+        int handfullBlue =
+          (handfull.get("blue") != null ? handfull.get("blue"): 0);
+        int handfullGreen =
+          (handfull.get("green") != null ? handfull.get("green"): 0);
+
+        if (handfullRed > minRedCube) {
+          minRedCube = handfullRed;
+        }
+        if (handfullGreen > minGreenCube) {
+          minGreenCube = handfullGreen;
+        }
+        if (handfullBlue > minBlueCube) {
+          minBlueCube = handfullBlue;
+        }
+      }
+      total += minRedCube * minBlueCube * minGreenCube;
     }
     return total;
   }
