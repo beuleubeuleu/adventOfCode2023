@@ -31,8 +31,10 @@ public class GondolaLift {
 
         if (Character.isDigit(currentChar)) {
           int wholeNumber = extractNumber(inputArray, lineIndex, charIndex);
-          if(hasSymbolAdjacentChar(inputArray, lineIndex, charIndex, wholeNumber)){
-              numbersList.add(wholeNumber);
+          if (
+            hasSymbolAdjacentChar(inputArray, lineIndex, charIndex, wholeNumber)
+          ) {
+            numbersList.add(wholeNumber);
           }
 
           // Mark the indices of the processed characters for the current number
@@ -61,15 +63,17 @@ public class GondolaLift {
     String adjacent = "";
 
     String currentLine = inputArray[lineIndex];
-    char charAfterWholeNumber = (
+    String charAfterWholeNumber = (
         charIndex + String.valueOf(wholeNumber).length() < currentLine.length()
       )
-      ? currentLine.charAt(charIndex + String.valueOf(wholeNumber).length())
-      : '\0';
+      ? String.valueOf(
+        currentLine.charAt(charIndex + String.valueOf(wholeNumber).length())
+      )
+      : "";
 
-    char charBeforeWholeNumber = (charIndex - 1 >= 0)
-      ? currentLine.charAt(charIndex - 1)
-      : '\0';
+    String charBeforeWholeNumber = (charIndex - 1 >= 0)
+      ? String.valueOf(currentLine.charAt(charIndex - 1))
+      : "";
 
     String charAboveWholeNumber = (lineIndex - 1 >= 0)
       ? inputArray[lineIndex - 1].substring(

@@ -46,6 +46,18 @@ public class GondolaLiftTest {
   }
 
   @Test
+  public void get_parts_custom_engine_schematics() {
+    String[] exampleDocs = {
+      ".2.3",
+      "6.*.",
+      ".5.7",
+    };
+    int[] expected = { 2, 3, 5, 7 };
+    GondolaLift exGondolaLift = new GondolaLift(exampleDocs);
+    assertArrayEquals(expected, exGondolaLift.getParts());
+  }
+
+  @Test
   public void get_parts_engine_schematics() {
     String[] docs = {
       ".........232.633.......................803..........................361................192............539.................973.221...340.....",
