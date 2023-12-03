@@ -2,6 +2,8 @@ package com.adventofcode.Day3;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -47,11 +49,7 @@ public class GondolaLiftTest {
 
   @Test
   public void get_parts_custom_engine_schematics() {
-    String[] exampleDocs = {
-      ".2.3",
-      "6.*.",
-      ".5.7",
-    };
+    String[] exampleDocs = { ".2.3", "6.*.", ".5.7" };
     int[] expected = { 2, 3, 5, 7 };
     GondolaLift exGondolaLift = new GondolaLift(exampleDocs);
     assertArrayEquals(expected, exGondolaLift.getParts());
@@ -204,5 +202,45 @@ public class GondolaLiftTest {
     int[] expected = { 467, 35, 633, 617, 592, 755, 664, 598 };
     GondolaLift exGondolaLift = new GondolaLift(docs);
     assertArrayEquals(expected, exGondolaLift.getParts());
+  }
+
+  @Test
+  public void get_gear_ratios_example_engine_schematics() {
+    String[] exampleDocs = {
+      "467..114..",
+      "...*......",
+      "..35..633.",
+      "......#...",
+      "617*......",
+      ".....+.58.",
+      "..592.....",
+      "......755.",
+      "...$.*....",
+      ".664.598..",
+    };
+    int expected = 467835;
+    GondolaLift exGondolaLift = new GondolaLift(exampleDocs);
+    assertEquals(expected, exGondolaLift.getSumOfGearRatio());
+  }
+
+  @Test
+  public void asterisk_with_two_adjacent_part_is_a_gear() {
+    String[] exampleDocs = {
+      "467..114..",
+      "...*......",
+      "..35..633.",
+      "......#...",
+      "...*......",
+      ".617.+.58.",
+      "..........",
+      "......755.",
+      "...$.*....",
+      ".664.598..",
+    };
+    GondolaLift exGondolaLift = new GondolaLift(exampleDocs);
+
+    // assertTrue(exGondolaLift.isGear(1, 3));
+    // assertFalse(exGondolaLift.isGear(3, 0));
+    assertFalse(exGondolaLift.isGear(4, 3));
   }
 }

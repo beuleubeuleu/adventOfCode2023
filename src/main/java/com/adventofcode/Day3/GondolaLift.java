@@ -54,6 +54,24 @@ public class GondolaLift {
     return convertListToArray(numbersList);
   }
 
+  public int getSumOfGearRatio() {
+    int total = 0;
+    for (int lineIndex = 0; lineIndex < EngineSchematics.length; lineIndex++) {
+      String currentLine = EngineSchematics[lineIndex];
+      for (
+        int charIndex = 0;
+        charIndex < EngineSchematics.length;
+        charIndex++
+      ) {
+        char currentChar = currentLine.charAt(charIndex);
+        // if(isGear(currentChar)) {
+        //     total+=getGearRatio(currentChar);
+        // }
+      }
+    }
+    return total;
+  }
+
   private static boolean hasSymbolAdjacentChar(
     String[] inputArray,
     int lineIndex,
@@ -138,5 +156,48 @@ public class GondolaLift {
     }
 
     return false; // The string doesn't contain symbols
+  }
+
+  public boolean isGear(int lineIndex, int charIndex) {
+    String currentLine = this.EngineSchematics[lineIndex];
+    if (currentLine.charAt(charIndex) != '*') {
+      return false;
+    }
+
+    String charAfterAsterisk = (charIndex + 1 < currentLine.length())
+    ? String.valueOf(currentLine.charAt(charIndex + 1))
+    : "";
+
+String charBeforeAsterisk = (charIndex - 1 >= 0)
+    ? String.valueOf(currentLine.charAt(charIndex - 1))
+    : "";
+
+String charAboveLeftAsterisk = (lineIndex - 1 >= 0) && (charIndex - 1 >= 0)
+    ? String.valueOf(this.EngineSchematics[lineIndex - 1].charAt(charIndex - 1))
+    : "";
+
+String charAboveAsterisk = (lineIndex - 1 >= 0)
+    ? String.valueOf(this.EngineSchematics[lineIndex - 1].charAt(charIndex))
+    : "";
+
+String charAboveRightAsterisk = (lineIndex - 1 >= 0) && (charIndex + 1 < this.EngineSchematics[lineIndex - 1].length())
+    ? String.valueOf(this.EngineSchematics[lineIndex - 1].charAt(charIndex + 1))
+    : "";
+
+String charBelowLeftAsterisk = (lineIndex + 1 < this.EngineSchematics.length) && (charIndex - 1 >= 0)
+    ? String.valueOf(this.EngineSchematics[lineIndex + 1].charAt(charIndex - 1))
+    : "";
+
+String charBelowAsterisk = (lineIndex + 1 < this.EngineSchematics.length)
+    ? String.valueOf(this.EngineSchematics[lineIndex + 1].charAt(charIndex))
+    : "";
+
+String charBelowRightAsterisk = (lineIndex + 1 < this.EngineSchematics.length) && (charIndex + 1 < this.EngineSchematics[lineIndex + 1].length())
+    ? String.valueOf(this.EngineSchematics[lineIndex + 1].charAt(charIndex + 1))
+    : "";
+
+
+
+    return true;
   }
 }
