@@ -1,5 +1,9 @@
 package com.adventofcode.Day4;
 
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.is;
+
+
 import org.junit.Test;
 
 public class CardsTest {
@@ -13,5 +17,6 @@ public class CardsTest {
     @Test
     public void get_the_total_value() {
         Cards deckOfCards = pileOfCardsParser.getCards(exampleDocs);
+        assertThat(deckOfCards.getSumOfValues(), is(13));
     }
 }
