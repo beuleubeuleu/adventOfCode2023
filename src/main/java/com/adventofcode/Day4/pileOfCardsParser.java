@@ -10,7 +10,7 @@ public class pileOfCardsParser {
 
     for (String line : exampleDocs) {
       String[] parts = line.split(":");
-      int id = Integer.parseInt(parts[0].trim().split(" ")[1]);
+      int id = Integer.parseInt(parts[0].trim().split("\\s+")[1]);
       List<Integer> winningNumbers = parseNumbers(
         parts[1].split("\\|")[0].trim()
       );
