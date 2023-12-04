@@ -14,7 +14,7 @@ public class CardsTest {
         "Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36",
         "Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11"};
         
-        String[] part1Doc = {
+        String[] doc = {
         "Card   1: 84 17 45 77 11 66 94 28 71 70 | 45 51 86 83 53 58 64 30 67 96 41 89  8 17 33 50 80 84  6  2 87 72 27 63 77",
         "Card   2: 18 17 59  8 78 79 34 35 48 73 | 61 49 59 99 77  8 79 64 36  6  3 67  4 90 83 22  9 82 39 78 92 42 33 70 17",
         "Card   3: 60 78 77 44 62 54 94 50 32 11 |  2  6 89 50 11 60 57 53 71 44 47 62 49 42 73 78 77 54 99 29 35 94 32 68 74",
@@ -239,7 +239,20 @@ public class CardsTest {
 
     @Test
     public void get_the_total_value_part1() {
-        Cards deckOfCards = pileOfCardsParser.getCards(part1Doc);
+        Cards deckOfCards = pileOfCardsParser.getCards(doc);
         assertThat(deckOfCards.getSumOfValues(), is(23941));
     }
+
+    @Test
+    public void get_the_total_scratchCards() {
+        Cards deckOfCards = pileOfCardsParser.getCards(exampleDocs);
+        assertThat(deckOfCards.getTotalScratchcards(), is(30));
+    }
+
+    @Test
+    public void get_the_total_scratchCards_part2() {
+        Cards deckOfCards = pileOfCardsParser.getCards(doc);
+        assertThat(deckOfCards.getTotalScratchcards(), is(30));
+    }
 }
+
